@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todolist">
+<head>
+  <meta charset="UTF-8">
+  <title>提醒事项</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="iconfont/iconfont.css">
+
+<body ng-controller="main">
+  <div class="container">
+    <div class="container-inner">
+      <div class="container-left">
+        <div class="icould-list-wrap">
+          <ul class="icould-lists">
+            <li class="icould-item icloud-notice">
+              <span class="">iCloud</span>
+              <span class="notice">提醒事项</span>
+              <span class="add" ng-click="add()"></span>
+            </li>
+            <li class="icould-item">
+              <span class="icould-icon iconfont icon-naozhong" id="margin"></span>
+              <span class="icould-title">已计划</span>
+            </li>
+            <li class="icould-item" ng-repeat="v in lists" ng-click="setCurrent($index)">
+              <span class="icould-icon" ng-class="v.theam"></span>
+              <input class="icould-title" ng-model="v.name" value="v.name" ng-change="saveData()">
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="container-right">
+        <div class="search-wrap">
+          <input type="text" class="search-inout" placeholder="搜索所有提醒">
+          <span></span>
+        </div>
+        <div class="icould-details-wrap">
+          <div class="icould-details">
+            <div class="title-wrap">
+              <span class="title" ng-class="current.theam">{{current.name}}</span>
+              <span class="chose" ng-class="current.theam" ng-click="showf()" ng-init="show=false">选项</span>
+            </div>
+            <div class="time">2016年6月4日 星期六</div>
+            <div class="finished-wrap">
+              <input type="checkbox" id="point1" style="display:none">
+              <section>
+                <p class="h3">
+                  <span class="point"><label for="point1"></label></span>
+                  <span class="finished-count">已完成</span>
+                  <span class="clear" ng-class="current.theam" ng-click="clearstate()">清除已完成事件</span>
+                </p>
+                <ul class="details-lists">
+                  <li class="details-item" ng-repeat="v in current.shixiang" ng-show="v.state" ng-click="v.state=!v.state">
+                    <span class="circle" ng-class="current.theam">
+                      <span class="small" ng-class="current.theam"></span>
+                    </span>
+                    <span>{{v.name}}</span>
+                  </li>
+                </ul>
+              </section>
+              <input type="checkbox" id="point" style="display:none">
+              <section>
+                <p class="h3">
+                  <span class="point"><label for="point"></label></span>
+                  <span class="finished-count">未完成</span>
+                </p>
+                <ul class="details-lists">
+                  <li class="details-item" ng-repeat="v in current.shixiang" ng-show="!v.state" ng-click="v.state=!v.state">
+                      <span class="circle" ng-class="current.theam"></span>
+                    <span>{{v.name}}</span>
+                  </li>
+                </ul>
+              </section>
+            </div>
+          </div>
+          <div class="alert-wrap" ng-show="show" >
+            <div class="alert-inner">
+              <div class="alert-input">
+                <span type="text"   ng-class="">{{current.name}}</span>
+              </div>
+              <div class="color-lists-wrap">
+                <h3>列表颜色</h3>
+                <ul class="color-lists">
+                  <li class="color-item" ng-repeat="v in color" ng-click="replacecolor($index)"></li>
+                </ul>
+              </div>
+              <div class="btn-wrap">
+                <span  class="delete btn" ng-click="deleteList(current.id)">删除</span>
+                <span  class="done btn" ng-click="savel()">完成</span>
+                <span  class="quxiao btn" ng-click="cancel()">取消</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="js/jquery.js"></script>
+  <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.js"></script>
+  <script src="js/angular-animate.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
