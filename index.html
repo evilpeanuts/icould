@@ -18,7 +18,7 @@
             <li class="icould-item icloud-notice">
               <span class="">iCloud</span>
               <span class="notice">提醒事项</span>
-              <span class="add" ng-click="add()"></span>
+              <span class="add" ng-click="addform()"></span>
             </li>
             <li class="icould-item">
               <span class="icould-icon iconfont icon-naozhong"></span>
@@ -56,7 +56,8 @@
                     <span class="circle" ng-class="current.theam" ng-click="v.state=!v.state">
                       <span class="small" ng-class="current.theam"></span>
                     </span>
-                    <span>{{v.name}}</span>
+                    <span ng-click="changeevent($index)" ng-show="!v.changestatue">{{v.name}}</span>
+                    <input type="text" name="" value="" ng-model="v.name" ng-show="v.changestatue" ng-blur="changeeventend($index)">
                   </li>
                 </ul>
               </section>
@@ -69,11 +70,13 @@
                 <ul class="details-lists">
                   <li class="details-item" ng-repeat="v in current.project" ng-show="!v.state" >
                       <span class="circle" ng-class="current.theam" ng-click="v.state=!v.state"></span>
-                    <span>{{v.name}}</span>
+                    <span ng-click="changeevent($index)" ng-show="!v.changestatue">{{v.name}}</span>
+                    <input type="text" name="" value="" ng-model="v.name" ng-show="v.changestatue" ng-blur="changeeventend($index)" >
+                  </li>
                   </li>
                 </ul>
               </section>
-              <section>
+              <section ng-init="shake" ng-class="{'shake':shake}">
                 <p class="h4">
                         <span class="circle addevent" ng-class="current.theam" ng-click="addpro()"><img src="./iconfont/add.svg" alt=""></span>
                         <input type="text" name="" ngMaxlength="20" ng-model="addproject.name" ng-keyup="mykey($event)" style="width:80%;color:#666;font-size:18px" placeholder="请输入需要提醒的事项">
