@@ -43,13 +43,13 @@
               <span class="title" ng-class="current.theam">{{current.name}}</span>
               <span class="chose" ng-class="current.theam" ng-click="open()">选项</span>
             </div>
-            <div class="time">2016年6月4日 星期六</div>
+            <div class="time">当前时间 : {{getTime()}}</div>
             <div class="finished-wrap">
               <input type="checkbox" id="point1" style="display:none">
               <section>
                 <p class="h3">
                   <span class="point"><label for="point1"></label></span>
-                  <span class="finished-count">已完成{{countdoneitem()}}项</span>
+                  <span class="finished-count">已完成{{currentdoneitem()}}项</span>
                   <span class="clear" ng-class="current.theam" ng-click="clearsuccess()">清除已完成事件</span>
                 </p>
                 <ul class="details-lists">

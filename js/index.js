@@ -76,7 +76,7 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
   $scope.setCurrent = function(index) {
     $scope.current = $scope.lists[index];
   }
-  // 已完成几项
+  // 设置当前清单
   $scope.setCurrenttodo=function(todo){
    $scope.currenttodo=todo;
   }
@@ -105,7 +105,8 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
     $scope.show = !$scope.show;
     $scope.saveData();
   };
-  $scope.countdoneitem = function(){
+  // 获取当前完成几项
+  $scope.currentdoneitem = function(){
      var r = 0;
      $scope.current.project.forEach(function(data){
          if(data.state){
@@ -114,6 +115,18 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
      })
      return r;
    }
+   //获取当前时间
+   $scope.getTime=function(){
+      var myDate = new Date();
+      var day=['日','一','二','三','四','五','六',]
+     $timeout(function(){
+      myDate = new Date();
+     },1000)
+       return myDate.toLocaleString() + '  ( 星期' + day[myDate.getDay()] + ' )' ;
+   }
+   $timeout(function(){
+    $scope.getTime()
+   },1000)
   if (!$scope.current && ($scope.lists.length == 0)) {
     $scope.addform();
     $scope.setCurrent(0);
