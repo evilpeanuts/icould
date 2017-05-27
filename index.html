@@ -10,6 +10,7 @@
   <script src="js/angular-animate.js"></script>
   <script src="js/index.js"></script>
 <body ng-controller="main">
+  <div class="border-orange"></div>
   <div class="container">
     <div class="container-inner">
       <div class="container-left">
@@ -24,8 +25,8 @@
               <span class="icould-icon iconfont icon-naozhong"></span>
               <span class="icould-title">已计划</span>
             </li>
-            <li class="icould-item" ng-repeat="v in lists" ng-click="setCurrent($index)">
-              <span class="icould-icon" ng-class="v.theam"></span>
+            <li class="icould-item" ng-class="{active: v == current}" ng-repeat="v in lists" ng-click="setCurrent($index)">
+              <span class="icould-icon icon-{{v.theam}}" ng-class="v.theam"></span>
               <input class="icould-title" ng-model="v.name" value="v.name" ng-change="saveData()">
             </li>
           </ul>
@@ -48,36 +49,32 @@
               <section>
                 <p class="h3">
                   <span class="point"><label for="point1"></label></span>
-                  <span class="finished-count">已完成</span>
+                  <span class="finished-count">已完成{{countdoneitem()}}项</span>
                   <span class="clear" ng-class="current.theam" ng-click="clearsuccess()">清除已完成事件</span>
                 </p>
                 <ul class="details-lists">
-                  <li class="details-item" ng-repeat="v in current.project" ng-show="v.state" >
-                    <span class="circle" ng-class="current.theam" ng-click="v.state=!v.state">
-                      <span class="small" ng-class="current.theam"></span>
+                  <li class="details-item {{current.theam}}" ng-repeat="v in current.project" ng-show="v.state" ng-click="setCurrenttodo(v)" ng-class="{'item-active':v == currenttodo}">
+                    <span class="circle circle-{{current.theam}}"  ng-click="v.state=!v.state">
                     </span>
-                    <span ng-click="changeevent($index)" ng-show="!v.changestatue">{{v.name}}</span>
-                    <input type="text" name="" value="" ng-model="v.name" ng-show="v.changestatue" ng-blur="changeeventend($index)">
+                   <div class="row-divider-top"></div>
+                    <input type="text" name="" value="" ng-model="v.name"  ng-blur="changeeventend($index)" >
                   </li>
                 </ul>
+                <div class="divider"></div>
               </section>
-              <input type="checkbox" id="point" style="display:none">
+              <input type="checkbox" checked id="point" style="display:none">
               <section>
-                <p class="h3">
-                  <span class="point"><label for="point"></label></span>
-                  <span class="finished-count">未完成</span>
-                </p>
                 <ul class="details-lists">
-                  <li class="details-item" ng-repeat="v in current.project" ng-show="!v.state" >
-                      <span class="circle" ng-class="current.theam" ng-click="v.state=!v.state"></span>
-                    <span ng-click="changeevent($index)" ng-show="!v.changestatue">{{v.name}}</span>
-                    <input type="text" name="" value="" ng-model="v.name" ng-show="v.changestatue" ng-blur="changeeventend($index)" >
+                  <li class="details-item {{current.theam}}" ng-repeat="v in current.project" ng-show="!v.state" ng-click="setCurrenttodo(v)" ng-class="{'item-active':v == currenttodo}">
+                      <span class="circle border-{{current.theam}}" ng-click="v.state=!v.state"></span>
+                      <div class="row-divider-top"></div>
+                    <input type="text" name="" value="" ng-model="v.name" ng-blur="changeeventend($index)" >
                   </li>
                   </li>
                 </ul>
               </section>
-              <section ng-init="shake" ng-class="{'shake':shake}">
-                <p class="h4">
+              <section ng-init="shake" ng-class="{'shake':shake}" style="border-bottom: 1px solid #E0E0E0;">
+                <p class="h4" style="border-top: 1px solid #E0E0E0;">
                         <span class="circle addevent" ng-class="current.theam" ng-click="addpro()"><img src="./iconfont/add.svg" alt=""></span>
                         <input type="text" name="" ngMaxlength="20" ng-model="addproject.name" ng-keyup="mykey($event)" style="width:80%;color:#666;font-size:18px" placeholder="请输入需要提醒的事项">
               </p>

@@ -44,32 +44,70 @@ input{
 }
 
 $img-path: '../img/';
-$color-list: red,orange,yellow,green,blue,pink,purple;
+
+$color: #ff7f00,#e0ac00,#49bf1f,#1badf8,#b14bc9,#a2845e,#ff2968;
+$color-list: orange,yellow,green,blue,purple,brown,pink;
+$color-rgba: rgba(255,127,0,0.1),rgba(224,172,0,0.1),rgba(73,191,31,0.1),rgba(27,173,248,0.1),rgba(177,75,201,0.1),rgba(162,132,94,0.1),rgba(255,41,104,0.1) ;
 @for $i from 1 to 8{
   .#{nth($color-list,$i)}{
-    background: #{nth($color-list,$i)};
-    color: #{nth($color-list,$i)};
-    border: 1px solid #{nth($color-list,$i)};
+    color: #{nth($color,$i)};
   }
   .color-lists .color-item:nth-child(#{$i}){
     background: #{nth($color-list,$i)};
   }
+  .#{nth($color-list,$i)}.item-active{
+    background: #{nth($color-rgba,$i)};
+    border: 1px solid #{nth($color,$i)};
+    border-left: none;
+    border-right: none;
+  }
 }
+$img-position:(
+'orange': -51px -571px,
+'yellow':-34px -571px,
+'green': -85px -571px,
+'blue' : -68px -571px,
+'purple' : -17px -571px,
+'brown' : -133px -550px,
+'pink' : -102px -571px
+);
 
-/* @mixin userem($size){
-  $shebei-list : 1024px,1280,1366px,1920px,2560px;
+$border-position:(
+'orange': 0 -435px,
+'yellow':-136px -267px,
+'green': -42px -359px,
+'blue' : -42px -359px,
+'purple' :-64px -465px,
+'brown' : -96px -433px,
+'pink' : -128px -401px
+);
+$circle-position:(
+'orange': -96px -465px,
+'yellow':-136px -199px,
+'green': -32px -401px,
+'blue' : -74px -359px,
+'purple' :0 -465px,
+'brown' : -133px -549px,
+'pink' : -102px -571px
+);
 
-    @each $shebei in $shebei-list{
-      @media screen and(max-width: $shebei){
-        .container{
-          width: 100%;
-          height:$shebei/(4/3);
-        }
-      }
-    }
-
+@each $class-name in map-keys($border-position){
+  $offf : map-get($img-position, $class-name);
+  $off : map-get($border-position, $class-name);
+  $of: map-get($circle-position, $class-name);
+  .icon-#{$class-name}{
+    background: url($img-path+'packed-5.png');
+    background-position: $offf;
+  }
+  .border-#{$class-name}{
+    background: url($img-path+'packed-5.png');
+    background-position: $off;
+  }
+  .circle-#{$class-name}{
+    background: url($img-path+'packed-5.png');
+    background-position: $of;
+  }
 }
-@include userem(2560px); */
 .container{
   position: absolute;
   top: 0;
@@ -78,7 +116,9 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
   bottom: 0;
   margin:auto;
 }
-
+.divider{
+  display: none;
+}
 .container-inner{
   width: 100%;
   height: 100%;
@@ -92,9 +132,6 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
   .icould-list-wrap{
     height: 100%;
     overflow-y: scroll;
-  }
-  .icould-lists .icould-item.active{
-    background: #2D2D2B;
   }
   .icould-lists .icould-item{
     width: 100%;
@@ -119,13 +156,17 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
       line-height: 20px;
     }
     .icould-icon{
-      width: 20px;
-      height: 20px;
+      width: 17px;
+      height: 17px;
       margin: 12px 7px;
       border-radius: 50%;
       box-sizing: border-box;
     }
   }
+  .icould-item.active{
+      background: rgb(45,45,43);
+      overflow: hidden;
+    }
   .icloud-notice{
     position: relative;
     font-family: 'font-one';
@@ -203,8 +244,8 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
 
   .finished-wrap{
     .h3,.h4{
-      height: 54px;
       border-bottom: 1px solid #E0E0E0;
+      height: 54px;
       color: #999;
       font-size: 18px;
       line-height: 54px;
@@ -235,36 +276,43 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
       transition: height 1s ease;
       .details-item{
         height: 49px;
-        border-bottom: 1px solid #E0E0E0;
         line-height: 49px;
+        position: relative;
+        box-sizing: border-box;
         display: none;
+        .row-divider-top{
+         position: absolute;
+         left: 0;
+          top: 0;
+          width: 100%;
+          height: 1px;
+          background: rgba(0,0,0,.1);
+        }
+        .row-divider-top:nth-child(1){
+         position: absolute;
+         left: 0;
+          top: 0;
+          width: 100%;
+          height: 2px;
+          background: rgba(0,0,0,.1);
+        }
         span{
           display: inline-block;
         }
         input{
-          font-size: 16px;
+          font-size: 18px;
+          margin-left: 70px;
         }
       }
       .details-item .circle{
-        width: 30px;
-        height: 30px;
-        position: relative;
-        background: none;
-        margin: 10px;
+        width: 32px;
+        height: 32px;
+        position: absolute;
+        top: 9px;
+        left: 21px;
         float: left;
         border-radius: 50%;
         box-sizing: border-box;
-      }
-      .details-item .circle .small{
-        width: 20px;
-        height: 20px;
-        position: absolute;
-        margin: auto;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        right: 0;
-        border-radius: 50%;
       }
     }
     .addproject{
@@ -273,10 +321,11 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
   }
 
   #point:checked + section,#point1:checked + section {
+    .h3{
+    border-bottom: none;
+    }
     .details-lists{
-      /* display: block; */
       height: 100%;
-      /* opacity: 1; */
       .details-item{
         display: block;
       }
@@ -284,7 +333,12 @@ $color-list: red,orange,yellow,green,blue,pink,purple;
     .point{
       transform: rotate(0);
     }
+    .divider{
+      height: 20px;
+      display: block;
+    }
   }
+
   .time{
     height: 44px;
     line-height: 44px;
@@ -427,6 +481,7 @@ transform: translate3d(0,-5px,0);
 transform: translate3d(0,5px,0);
 }
 }
+
 .shake{
   animation-duration: .5s; /*动画时间*/
    animation-fill-mode: both; /*播放后的状态*/

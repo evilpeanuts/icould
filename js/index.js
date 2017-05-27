@@ -9,14 +9,13 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
   $scope.addproject={
     state:false,
     name:'',
-    changestatue:false
   }
   $scope.choseindex=0;
   // 保存到本地
   $scope.saveData = function() {
     localStorage.todo = angular.toJson(this.lists);
   }
-  $scope.colors = ['red', 'orange', 'yellow', 'green', 'blue', 'pink', 'purple'];
+  $scope.colors = ['orange', 'yellow', 'green', 'blue', 'purple', 'brown','pink'];
   // 选颜色
   $scope.chosecolor = function(index) {
     $scope.current.theam = $scope.colors[index];
@@ -42,7 +41,6 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
    $scope.addproject={
      state:false,
      name:'',
-     changestatue:false
    };
    $scope.saveData();
     $timeout(function(){
@@ -78,6 +76,10 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
   $scope.setCurrent = function(index) {
     $scope.current = $scope.lists[index];
   }
+  // 已完成几项
+  $scope.setCurrenttodo=function(todo){
+   $scope.currenttodo=todo;
+  }
   // 删除清单
   $scope.deleteList = function(id) {
     $scope.lists = this.lists.filter(function(v, i) {
@@ -103,13 +105,15 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
     $scope.show = !$scope.show;
     $scope.saveData();
   };
-  // 修改事件
-  $scope.changeevent=function(index){
-   $scope.current.project[index].changestatue=!$scope.current.project[index].changestatue;
-  };
-  $scope.changeeventend=function(index){
-   $scope.current.project[index].changestatue=!$scope.current.project[index].changestatue;
-  };
+  $scope.countdoneitem = function(){
+     var r = 0;
+     $scope.current.project.forEach(function(data){
+         if(data.state){
+       r += 1;
+         }
+     })
+     return r;
+   }
   if (!$scope.current && ($scope.lists.length == 0)) {
     $scope.addform();
     $scope.setCurrent(0);
@@ -118,17 +122,3 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
     $scope.setCurrent(0);
   }
 }]);
-myTodo.directive('setFocus', function(){
-  return {
-       scope:false,
-       link:function(scope, element){
-           scope.$watch("isFocus",function(newValue,oldValue, scope) {
-               //大圣来了，且要取芭蕉扇
-               if(newValue && scope.isCome){
-                   element[0].focus(); //获取焦点
-                   alert("猴哥，老牛不在家，我一介女子还不是你说什么我就照做，可你进入人家的身体也不打声招呼，进了就进了，还搞得我那么难受，求你别搞了，给，芭~~~蕉~~~扇！")
-               }
-          }, true);;
-       }
-   };
-    });

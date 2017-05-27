@@ -54,90 +54,216 @@ input {
   background: none;
 }
 
-.red {
-  background: red;
-  color: red;
-  border: 1px solid red;
+.orange {
+  color: #ff7f00;
 }
 
 .color-lists .color-item:nth-child(1) {
-  background: red;
+  background: orange;
 }
 
-.orange {
-  background: orange;
-  color: orange;
-  border: 1px solid orange;
-}
-
-.color-lists .color-item:nth-child(2) {
-  background: orange;
+.orange.item-active {
+  background: rgba(255, 127, 0, 0.1);
+  border: 1px solid #ff7f00;
+  border-left: none;
+  border-right: none;
 }
 
 .yellow {
-  background: yellow;
-  color: yellow;
-  border: 1px solid yellow;
+  color: #e0ac00;
 }
 
-.color-lists .color-item:nth-child(3) {
+.color-lists .color-item:nth-child(2) {
   background: yellow;
+}
+
+.yellow.item-active {
+  background: rgba(224, 172, 0, 0.1);
+  border: 1px solid #e0ac00;
+  border-left: none;
+  border-right: none;
 }
 
 .green {
-  background: green;
-  color: green;
-  border: 1px solid green;
+  color: #49bf1f;
 }
 
-.color-lists .color-item:nth-child(4) {
+.color-lists .color-item:nth-child(3) {
   background: green;
+}
+
+.green.item-active {
+  background: rgba(73, 191, 31, 0.1);
+  border: 1px solid #49bf1f;
+  border-left: none;
+  border-right: none;
 }
 
 .blue {
-  background: blue;
-  color: blue;
-  border: 1px solid blue;
+  color: #1badf8;
 }
 
-.color-lists .color-item:nth-child(5) {
+.color-lists .color-item:nth-child(4) {
   background: blue;
 }
 
-.pink {
-  background: pink;
-  color: pink;
-  border: 1px solid pink;
-}
-
-.color-lists .color-item:nth-child(6) {
-  background: pink;
+.blue.item-active {
+  background: rgba(27, 173, 248, 0.1);
+  border: 1px solid #1badf8;
+  border-left: none;
+  border-right: none;
 }
 
 .purple {
+  color: #b14bc9;
+}
+
+.color-lists .color-item:nth-child(5) {
   background: purple;
-  color: purple;
-  border: 1px solid purple;
+}
+
+.purple.item-active {
+  background: rgba(177, 75, 201, 0.1);
+  border: 1px solid #b14bc9;
+  border-left: none;
+  border-right: none;
+}
+
+.brown {
+  color: #a2845e;
+}
+
+.color-lists .color-item:nth-child(6) {
+  background: brown;
+}
+
+.brown.item-active {
+  background: rgba(162, 132, 94, 0.1);
+  border: 1px solid #a2845e;
+  border-left: none;
+  border-right: none;
+}
+
+.pink {
+  color: #ff2968;
 }
 
 .color-lists .color-item:nth-child(7) {
-  background: purple;
+  background: pink;
 }
 
-/* @mixin userem($size){
-  $shebei-list : 1024px,1280,1366px,1920px,2560px;
-
-    @each $shebei in $shebei-list{
-      @media screen and(max-width: $shebei){
-        .container{
-          width: 100%;
-          height:$shebei/(4/3);
-        }
-      }
-    }
-
+.pink.item-active {
+  background: rgba(255, 41, 104, 0.1);
+  border: 1px solid #ff2968;
+  border-left: none;
+  border-right: none;
 }
-@include userem(2560px); */
+
+.icon-orange {
+  background: url("../img/packed-5.png");
+  background-position: -51px -571px;
+}
+
+.border-orange {
+  background: url("../img/packed-5.png");
+  background-position: 0 -435px;
+}
+
+.circle-orange {
+  background: url("../img/packed-5.png");
+  background-position: -96px -465px;
+}
+
+.icon-yellow {
+  background: url("../img/packed-5.png");
+  background-position: -34px -571px;
+}
+
+.border-yellow {
+  background: url("../img/packed-5.png");
+  background-position: -136px -267px;
+}
+
+.circle-yellow {
+  background: url("../img/packed-5.png");
+  background-position: -136px -199px;
+}
+
+.icon-green {
+  background: url("../img/packed-5.png");
+  background-position: -85px -571px;
+}
+
+.border-green {
+  background: url("../img/packed-5.png");
+  background-position: -42px -359px;
+}
+
+.circle-green {
+  background: url("../img/packed-5.png");
+  background-position: -32px -401px;
+}
+
+.icon-blue {
+  background: url("../img/packed-5.png");
+  background-position: -68px -571px;
+}
+
+.border-blue {
+  background: url("../img/packed-5.png");
+  background-position: -42px -359px;
+}
+
+.circle-blue {
+  background: url("../img/packed-5.png");
+  background-position: -74px -359px;
+}
+
+.icon-purple {
+  background: url("../img/packed-5.png");
+  background-position: -17px -571px;
+}
+
+.border-purple {
+  background: url("../img/packed-5.png");
+  background-position: -64px -465px;
+}
+
+.circle-purple {
+  background: url("../img/packed-5.png");
+  background-position: 0 -465px;
+}
+
+.icon-brown {
+  background: url("../img/packed-5.png");
+  background-position: -133px -550px;
+}
+
+.border-brown {
+  background: url("../img/packed-5.png");
+  background-position: -96px -433px;
+}
+
+.circle-brown {
+  background: url("../img/packed-5.png");
+  background-position: -133px -549px;
+}
+
+.icon-pink {
+  background: url("../img/packed-5.png");
+  background-position: -102px -571px;
+}
+
+.border-pink {
+  background: url("../img/packed-5.png");
+  background-position: -128px -401px;
+}
+
+.circle-pink {
+  background: url("../img/packed-5.png");
+  background-position: -102px -571px;
+}
+
 .container {
   position: absolute;
   top: 0;
@@ -145,6 +271,10 @@ input {
   right: 0;
   bottom: 0;
   margin: auto;
+}
+
+.divider {
+  display: none;
 }
 
 .container-inner {
@@ -163,10 +293,6 @@ input {
 .container-left .icould-list-wrap {
   height: 100%;
   overflow-y: scroll;
-}
-
-.container-left .icould-lists .icould-item.active {
-  background: #2D2D2B;
 }
 
 .container-left .icould-lists .icould-item {
@@ -197,11 +323,16 @@ input {
 }
 
 .container-left .icould-lists .icould-item .icould-icon {
-  width: 20px;
-  height: 20px;
+  width: 17px;
+  height: 17px;
   margin: 12px 7px;
   border-radius: 50%;
   box-sizing: border-box;
+}
+
+.container-left .icould-item.active {
+  background: #2d2d2b;
+  overflow: hidden;
 }
 
 .container-left .icloud-notice {
@@ -293,8 +424,8 @@ input {
 }
 
 .icould-details .finished-wrap .h3, .icould-details .finished-wrap .h4 {
-  height: 54px;
   border-bottom: 1px solid #E0E0E0;
+  height: 54px;
   color: #999;
   font-size: 18px;
   line-height: 54px;
@@ -331,9 +462,28 @@ input {
 
 .icould-details .finished-wrap .details-lists .details-item, .icould-details .finished-wrap .addproject .details-item {
   height: 49px;
-  border-bottom: 1px solid #E0E0E0;
   line-height: 49px;
+  position: relative;
+  box-sizing: border-box;
   display: none;
+}
+
+.icould-details .finished-wrap .details-lists .details-item .row-divider-top, .icould-details .finished-wrap .addproject .details-item .row-divider-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.icould-details .finished-wrap .details-lists .details-item .row-divider-top:nth-child(1), .icould-details .finished-wrap .addproject .details-item .row-divider-top:nth-child(1) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 2px;
+  background: rgba(0, 0, 0, 0.1);
 }
 
 .icould-details .finished-wrap .details-lists .details-item span, .icould-details .finished-wrap .addproject .details-item span {
@@ -341,40 +491,31 @@ input {
 }
 
 .icould-details .finished-wrap .details-lists .details-item input, .icould-details .finished-wrap .addproject .details-item input {
-  font-size: 16px;
+  font-size: 18px;
+  margin-left: 70px;
 }
 
 .icould-details .finished-wrap .details-lists .details-item .circle, .icould-details .finished-wrap .addproject .details-item .circle {
-  width: 30px;
-  height: 30px;
-  position: relative;
-  background: none;
-  margin: 10px;
+  width: 32px;
+  height: 32px;
+  position: absolute;
+  top: 9px;
+  left: 21px;
   float: left;
   border-radius: 50%;
   box-sizing: border-box;
-}
-
-.icould-details .finished-wrap .details-lists .details-item .circle .small, .icould-details .finished-wrap .addproject .details-item .circle .small {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  margin: auto;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  border-radius: 50%;
 }
 
 .icould-details .finished-wrap .addproject {
   display: block;
 }
 
+.icould-details #point:checked + section .h3, .icould-details #point1:checked + section .h3 {
+  border-bottom: none;
+}
+
 .icould-details #point:checked + section .details-lists, .icould-details #point1:checked + section .details-lists {
-  /* display: block; */
   height: 100%;
-  /* opacity: 1; */
 }
 
 .icould-details #point:checked + section .details-lists .details-item, .icould-details #point1:checked + section .details-lists .details-item {
@@ -383,6 +524,11 @@ input {
 
 .icould-details #point:checked + section .point, .icould-details #point1:checked + section .point {
   transform: rotate(0);
+}
+
+.icould-details #point:checked + section .divider, .icould-details #point1:checked + section .divider {
+  height: 20px;
+  display: block;
 }
 
 .icould-details .time {
