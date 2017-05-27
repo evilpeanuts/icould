@@ -86,7 +86,7 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
       return v.id !== id;
     });
     if ($scope.lists.length == 0) {
-      $scope.add();
+      $scope.addform();
     }
     $scope.setCurrent($scope.lists.length-1);
     return $scope.saveData();

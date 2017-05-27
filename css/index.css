@@ -314,6 +314,7 @@ input {
 }
 
 .container-left .icould-lists .icould-item input {
+  width: 70%;
   color: #fff;
   font-size: 18px;
 }
