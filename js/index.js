@@ -1,5 +1,5 @@
 var myTodo = angular.module('icloud', []);
-myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
+myTodo.controller('main', ['$scope','$timeout','$interval', function($scope,$timeout,$interval) {
   if (localStorage.todo) {
     $scope.lists = angular.fromJson(localStorage.todo);
   } else {
@@ -45,7 +45,7 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
    $scope.saveData();
     $timeout(function(){
       $scope.shake=false;
-    },[500]);
+    },500);
   }
   // 添加清单
   $scope.addform = function() {
@@ -67,9 +67,16 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
   }
   // 清除完成事件
   $scope.clearsuccess = function() {
+    if($scope.current.project.length === 0){
+      return;
+    }
     $scope.current.project = $scope.current.project.filter(function(v, i) {
       return !v.state;
     });
+    $scope.isremove=true;
+    $timeout(function(){
+     $scope.isremove=false;
+    },1000)
     $scope.saveData();
   };
   // 当前下标
@@ -79,6 +86,10 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
   // 设置当前清单
   $scope.setCurrenttodo=function(todo){
    $scope.currenttodo=todo;
+  }
+  $scope.changstate=function(v){
+    v.state=!v.state;
+    $scope.saveData();
   }
   // 删除清单
   $scope.deleteList = function(id) {
@@ -94,7 +105,6 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
   // 点击选项
   $scope.open = function() {
     $scope.show = !$scope.show;
-    // newcurrect = angular.copy($scope.current);
   };
   // 点击选项关闭
   $scope.close = function() {
@@ -119,14 +129,11 @@ myTodo.controller('main', ['$scope','$timeout', function($scope,$timeout) {
    $scope.getTime=function(){
       var myDate = new Date();
       var day=['日','一','二','三','四','五','六',]
-     $timeout(function(){
+     $interval(function(){
       myDate = new Date();
      },1000)
        return myDate.toLocaleString() + '  ( 星期' + day[myDate.getDay()] + ' )' ;
    }
-   $timeout(function(){
-    $scope.getTime()
-   },1000)
   if (!$scope.current && ($scope.lists.length == 0)) {
     $scope.addform();
     $scope.setCurrent(0);

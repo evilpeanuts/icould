@@ -26,7 +26,7 @@
             </li>
             <li class="icould-item" ng-class="{active: v == current}" ng-repeat="v in lists" ng-click="setCurrent($index)">
               <span class="icould-icon icon-{{v.theam}}" ng-class="v.theam"></span>
-              <input class="icould-title" ng-model="v.name" value="v.name" ng-change="saveData()">
+              <input class="icould-title" ng-model="v.name" value="v.name" ng-blur="saveData()">
             </li>
           </ul>
         </div>
@@ -45,7 +45,7 @@
             <div class="time">当前时间 : {{getTime()}}</div>
             <div class="finished-wrap">
               <input type="checkbox" id="point1" style="display:none">
-              <section>
+              <section ng-init="isremove" ng-class="{'shake-lr':isremove}">
                 <p class="h3">
                   <span class="point"><label for="point1"></label></span>
                   <span class="finished-count">已完成{{currentdoneitem()}}项</span>
@@ -53,10 +53,10 @@
                 </p>
                 <ul class="details-lists">
                   <li class="details-item {{current.theam}}" ng-repeat="v in current.project" ng-show="v.state" ng-click="setCurrenttodo(v)" ng-class="{'item-active':v == currenttodo}">
-                    <span class="circle circle-{{current.theam}}"  ng-click="v.state=!v.state">
+                    <span class="circle circle-{{current.theam}}"  ng-click="changstate(v)">
                     </span>
                    <div class="row-divider-top"></div>
-                    <input type="text" name="" value="" ng-model="v.name"  ng-blur="changeeventend($index)" >
+                    <input type="text" name="" value="" ng-model="v.name"  ng-blur="saveData()" >
                   </li>
                 </ul>
                 <div class="divider"></div>
@@ -65,9 +65,9 @@
               <section>
                 <ul class="details-lists">
                   <li class="details-item {{current.theam}}" ng-repeat="v in current.project" ng-show="!v.state" ng-click="setCurrenttodo(v)" ng-class="{'item-active':v == currenttodo}">
-                      <span class="circle border-{{current.theam}}" ng-click="v.state=!v.state"></span>
+                      <span class="circle border-{{current.theam}}" ng-click="changstate(v)"></span>
                       <div class="row-divider-top"></div>
-                    <input type="text" name="" value="" ng-model="v.name" ng-blur="changeeventend($index)" >
+                    <input type="text" name="" value="" ng-model="v.name" ng-blur="saveData()" >
                   </li>
                   </li>
                 </ul>
